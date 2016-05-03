@@ -8,6 +8,8 @@ This project is a prototype.  It can perform a basic replication based on the st
 
 Expect lots of bugs, this code needs much more testing.
 
+Note that this project is community supported.
+
 ### Testing this project
 
 - check out this project
