@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sync-core-0.9.4-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/cloudant/sync-core/0.9.4-SNAPSHOT/sync-core-0.9.4-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="org.osgi.core-4.0.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.osgi/org.osgi.core/4.0.0/e9ba9c33b050480c605e06465cb901e0c4115f86/org.osgi.core-4.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

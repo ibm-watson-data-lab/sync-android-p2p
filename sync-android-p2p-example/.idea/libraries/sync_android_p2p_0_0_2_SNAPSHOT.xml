@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sync-android-p2p-0.0.2-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/net/christophersnow/sync-android-p2p/0.0.2-SNAPSHOT/sync-android-p2p-0.0.2-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

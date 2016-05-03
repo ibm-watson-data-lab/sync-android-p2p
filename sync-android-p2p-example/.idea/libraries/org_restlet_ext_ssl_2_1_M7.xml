@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="org.restlet.ext.ssl-2.1-M7">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.restlet.jse/org.restlet.ext.ssl/2.1-M7/9910b38a2c19a8238e98142252afade5392d5d1c/org.restlet.ext.ssl-2.1-M7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.restlet.jse/org.restlet.ext.ssl/2.1-M7/b46c9058dddc84746b795679a7fa6123ad84baa/org.restlet.ext.ssl-2.1-M7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
