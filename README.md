@@ -1,7 +1,5 @@
 # sync-android-p2p
 
-[![Build Status](https://travis-ci.org/snowch/sync-android-p2p.png?branch=master)](https://travis-ci.org/snowch/sync-android-p2p)
-
 This project implements a http listener on top of sync-android to allow sync-android to become a replication target.
 
 This project is a prototype.  It can perform a basic replication based on the steps below, however, a lot more functionality needs to be implemented to support replication proper.  In theory this code should work on Android, but this has not been tried yet.
@@ -14,7 +12,7 @@ Note that this project is community supported.
 
 - check out this project
 ```
-git clone https://github.com/snowch/sync-android-p2p
+git clone https://github.com/ibm-cds-labs/sync-android-p2p
 cd sync-android
 ./gradlew test
 ```
@@ -67,7 +65,7 @@ android {
     mavenCentral()
     maven { url "http://maven.restlet.org" }
     maven { url "http://cloudant.github.io/cloudant-sync-eap/repository/" }
-    maven { url 'https://github.com/snowch/sync-android-p2p/raw/master/repository/' }
+    maven { url 'https://github.com/ibm-cds-labs/sync-android-p2p/raw/master/repository/' }
   }
 
   ...
