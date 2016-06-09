@@ -1,13 +1,16 @@
 package com.cloudant.p2p.listener;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.logging.Logger;
+import com.cloudant.sync.datastore.Datastore;
+import com.cloudant.sync.datastore.DatastoreImpl;
+import com.cloudant.sync.datastore.DatastoreManager;
+import com.cloudant.sync.datastore.DatastoreNotCreatedException;
+import com.cloudant.sync.datastore.DocumentBody;
+import com.cloudant.sync.datastore.DocumentBodyFactory;
+import com.cloudant.sync.datastore.DocumentException;
+import com.cloudant.sync.datastore.DocumentRevision;
+import com.cloudant.sync.datastore.DocumentRevisionBuilder;
+import com.cloudant.sync.util.ExtendedJSONUtils;
+import com.cloudant.sync.util.JSONUtils;
 
 import org.restlet.data.MediaType;
 import org.restlet.data.Method;
@@ -20,18 +23,14 @@ import org.restlet.resource.Put;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 
-import com.cloudant.sync.datastore.BasicDocumentRevision;
-import com.cloudant.sync.datastore.Datastore;
-import com.cloudant.sync.datastore.DatastoreExtended;
-import com.cloudant.sync.datastore.DatastoreManager;
-import com.cloudant.sync.datastore.DatastoreNotCreatedException;
-import com.cloudant.sync.datastore.DocumentBody;
-import com.cloudant.sync.datastore.DocumentBodyFactory;
-import com.cloudant.sync.datastore.DocumentException;
-import com.cloudant.sync.datastore.DocumentRevisionBuilder;
-import com.cloudant.sync.datastore.MutableDocumentRevision;
-import com.cloudant.sync.util.ExtendedJSONUtils;
-import com.cloudant.sync.util.JSONUtils;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.logging.Logger;
 
 // Do not use this code for production - it is only a proof-of-concept.
 public class HttpListener extends ServerResource {
@@ -183,7 +182,7 @@ public class HttpListener extends ServerResource {
 			throw new RuntimeException(e);
 		}
 		
-        BasicDocumentRevision retrieved = null;
+        DocumentRevision retrieved = null;
         
 		try {
 			retrieved = ds.getDocument(id);
@@ -390,13 +389,14 @@ public class HttpListener extends ServerResource {
             builder.setRevId(revId);
             builder.setBody(body);
 
-            BasicDocumentRevision rev = builder.build();
+            DocumentRevision rev = builder.build();
 
             try {
-				((DatastoreExtended)ds).forceInsert(rev, revisionHistoryList, null, null, false);
-			} catch (DocumentException e) {
-				throw new RuntimeException(e);
-			}  
+                ((DatastoreImpl) ds).forceInsert(rev, revisionHistoryList.toArray(
+                        new String[revisionHistoryList.size()]));
+            } catch (DocumentException e) {
+                throw new RuntimeException(e);
+            }
             
             Map<String, Object> responseItem = new TreeMap<String, Object>();
             responseItem.put("ok", true);
@@ -441,7 +441,7 @@ public class HttpListener extends ServerResource {
         builder.setRevId(revId);
         builder.setDeleted(false);
         builder.setBody(body);
-        BasicDocumentRevision doc = builder.build();
+        DocumentRevision doc = builder.build();
 
         Datastore ds = null;
 		try {
@@ -453,7 +453,7 @@ public class HttpListener extends ServerResource {
         try {
             if (!ds.containsDocument(docId, revId)) {
                
-                ((DatastoreExtended)ds).forceInsert(doc);
+                ((DatastoreImpl)ds).forceInsert(doc);
                 
             } else {
                 // FIXME the datastore shouldn't contain this revId
