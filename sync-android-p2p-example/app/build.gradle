@@ -29,7 +29,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'net.christophersnow:sync-android-p2p:0.0.4-SNAPSHOT'
+    compile 'net.christophersnow:sync-android-p2p:0.0.5-SNAPSHOT'
 
     compile("org.restlet.jse:org.restlet:2.1-M7") {
         exclude group: 'org.osgi', module: 'org.osgi.core'
