@@ -62,7 +62,6 @@ android {
     mavenLocal()
     mavenCentral()
     maven { url "http://maven.restlet.org" }
-    maven { url "http://cloudant.github.io/cloudant-sync-eap/repository/" }
     maven { url 'https://github.com/ibm-cds-labs/sync-android-p2p/raw/master/repository/' }
   }
 
