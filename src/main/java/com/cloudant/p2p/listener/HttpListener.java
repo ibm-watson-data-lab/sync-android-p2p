@@ -40,9 +40,8 @@ public class HttpListener extends ServerResource {
 	public String databaseDir;
 
     private static final Logger logger = Logger.getLogger(HttpListener.class.getCanonicalName());
-    
-    // TODO need to ensure static access is thread-safe
-    private static DatastoreManager manager;
+
+    private final DatastoreManager manager;
 
     public HttpListener() {
 
@@ -52,8 +51,8 @@ public class HttpListener extends ServerResource {
         port = new Integer(
         			getApplication().getContext().getParameters().getFirstValue("port")
         			);
-        
-        manager = new DatastoreManager(databaseDir);
+
+        manager = DatastoreManager.getInstance(databaseDir);
     }
 
     @java.lang.Override

@@ -72,7 +72,7 @@ public abstract class P2PAbstractTest {
 		final String databaseDir = Files.createTempDirectory(null).toAbsolutePath().toString();
 		databaseDirs.put(port, databaseDir);
 	
-		DatastoreManager manager = new DatastoreManager(databaseDir);
+		DatastoreManager manager = DatastoreManager.getInstance(databaseDir);
 		Datastore ds = manager.openDatastore(dbname);
 		ds.close();
 	

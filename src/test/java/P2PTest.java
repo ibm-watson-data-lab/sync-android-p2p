@@ -43,7 +43,7 @@ public class P2PTest extends P2PAbstractTest {
 		try {
 			URI dstUri = new URI("http://" + IP_ADDR + ":" + DST_PORT + "/target");
 			
-			DatastoreManager sourceManager = new DatastoreManager(databaseDirs.get(SRC_PORT));
+			DatastoreManager sourceManager = DatastoreManager.getInstance(databaseDirs.get(SRC_PORT));
 			Datastore sourceDs = sourceManager.openDatastore("source");
 	
 			DocumentRevision revToCreate = new DocumentRevision();
@@ -64,7 +64,7 @@ public class P2PTest extends P2PAbstractTest {
 		
 		try {
 			String targetDb = databaseDirs.get(DST_PORT);
-			DatastoreManager destManager = new DatastoreManager(targetDb);
+			DatastoreManager destManager = DatastoreManager.getInstance(targetDb);
 			Datastore destDs = destManager.openDatastore("target");
 			Assert.assertTrue(
 					"Source document " + 

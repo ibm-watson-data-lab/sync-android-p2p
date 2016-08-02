@@ -49,7 +49,7 @@ public class Application {
 
         // some temporary code for development purposes :)
         File path = new File(databaseDir);
-        DatastoreManager manager = new DatastoreManager(path.getAbsolutePath());
+        DatastoreManager manager = DatastoreManager.getInstance(path.getAbsolutePath());
 
         // make sure we have a database for development
         Datastore ds = manager.openDatastore("mydb");
