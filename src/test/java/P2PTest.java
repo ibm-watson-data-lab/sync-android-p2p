@@ -1,22 +1,19 @@
-import static org.junit.Assert.fail;
+import com.cloudant.sync.datastore.Datastore;
+import com.cloudant.sync.datastore.DatastoreManager;
+import com.cloudant.sync.datastore.DocumentBodyFactory;
+import com.cloudant.sync.datastore.DocumentRevision;
+import com.cloudant.sync.replication.Replicator;
+import com.cloudant.sync.replication.ReplicatorBuilder;
 
-import java.io.File;
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.cloudant.sync.datastore.BasicDocumentRevision;
-import com.cloudant.sync.datastore.Datastore;
-import com.cloudant.sync.datastore.DatastoreManager;
-import com.cloudant.sync.datastore.DocumentBodyFactory;
-import com.cloudant.sync.datastore.MutableDocumentRevision;
-import com.cloudant.sync.replication.Replicator;
-import com.cloudant.sync.replication.ReplicatorBuilder;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.junit.Assert.fail;
 
 
 public class P2PTest extends P2PAbstractTest {
@@ -39,7 +36,7 @@ public class P2PTest extends P2PAbstractTest {
 	@Test
 	public void testPush() throws Exception {
 		
-		BasicDocumentRevision sourceRev = null;
+		DocumentRevision sourceRev = null;
 
 		// create a document in the source database
 		
@@ -49,10 +46,10 @@ public class P2PTest extends P2PAbstractTest {
 			DatastoreManager sourceManager = new DatastoreManager(databaseDirs.get(SRC_PORT));
 			Datastore sourceDs = sourceManager.openDatastore("source");
 	
-			MutableDocumentRevision revToCreate = new MutableDocumentRevision();
+			DocumentRevision revToCreate = new DocumentRevision();
 			Map<String, Object> json = new HashMap<String, Object>();
 			json.put("description", "Buy milk");
-			revToCreate.body = DocumentBodyFactory.create(json);
+			revToCreate.setBody(DocumentBodyFactory.create(json));
 			sourceRev = sourceDs.createDocumentFromRevision(revToCreate);
 	
 			Replicator replicator = ReplicatorBuilder.push().from(sourceDs).to(dstUri).build();

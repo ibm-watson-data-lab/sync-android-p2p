@@ -1,3 +1,19 @@
+import com.cloudant.p2p.listener.HttpListener;
+import com.cloudant.sync.datastore.Datastore;
+import com.cloudant.sync.datastore.DatastoreManager;
+import com.cloudant.sync.event.Subscribe;
+import com.cloudant.sync.notifications.ReplicationCompleted;
+import com.cloudant.sync.notifications.ReplicationErrored;
+import com.cloudant.sync.replication.ErrorInfo;
+import com.cloudant.sync.replication.Replicator;
+
+import org.junit.After;
+import org.restlet.Component;
+import org.restlet.Context;
+import org.restlet.Server;
+import org.restlet.data.Protocol;
+import org.restlet.routing.Router;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
@@ -8,23 +24,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
-
-import org.junit.After;
-import org.junit.Before;
-import org.restlet.Component;
-import org.restlet.Context;
-import org.restlet.Server;
-import org.restlet.data.Protocol;
-import org.restlet.routing.Router;
-
-import com.cloudant.p2p.listener.HttpListener;
-import com.cloudant.sync.datastore.Datastore;
-import com.cloudant.sync.datastore.DatastoreManager;
-import com.cloudant.sync.notifications.ReplicationCompleted;
-import com.cloudant.sync.notifications.ReplicationErrored;
-import com.cloudant.sync.replication.ErrorInfo;
-import com.cloudant.sync.replication.Replicator;
-import com.google.common.eventbus.Subscribe;
 
 public abstract class P2PAbstractTest {
 
@@ -144,7 +143,7 @@ public abstract class P2PAbstractTest {
 	 * A {@code ReplicationListener} that sets a latch when it's told the
 	 * replication has finished.
 	 */
-	class Listener {
+	public class Listener {
 
 		private final CountDownLatch latch;
 		public ErrorInfo error = null;
