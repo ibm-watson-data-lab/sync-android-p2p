@@ -1,9 +1,8 @@
 package com.example.snowch.myapplication;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -12,12 +11,10 @@ import com.cloudant.sync.datastore.Datastore;
 import com.cloudant.sync.datastore.DatastoreManager;
 
 import org.restlet.Component;
-import org.restlet.data.Protocol;
-import org.restlet.routing.Router;
 import org.restlet.Context;
 import org.restlet.Server;
-
-import android.util.Log;
+import org.restlet.data.Protocol;
+import org.restlet.routing.Router;
 
 import java.io.File;
 import java.util.logging.Level;
@@ -38,7 +35,7 @@ public class MainActivity extends Activity {
         try {
             // create datastore
             final File databaseDir = getApplicationContext().getDir("datastores", MODE_PRIVATE);
-            final DatastoreManager manager = new DatastoreManager(databaseDir.getAbsolutePath());
+            final DatastoreManager manager = DatastoreManager.getInstance(databaseDir.getAbsolutePath());
 
             Datastore ds = manager.openDatastore("mydb");
             ds.close();
